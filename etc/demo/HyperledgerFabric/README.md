@@ -1,4 +1,8 @@
-# tl;dr
+# Hyperledger Fabric demo README
+
+## tl;dr
+
+[Do check out the CHEATCODE.md for cool stuffs to keep notes about after everything is done](./CHEATCODE.md)
 
 - Introduction: https://hyperledger-fabric.readthedocs.io/en/latest/blockchain.html
 - Model glossary and benefits: https://hyperledger-fabric.readthedocs.io/en/latest/fabric_model.html
@@ -8,7 +12,7 @@
 
 Simplified walkthrough:-
 
-1. Install a lot of prerequisites components just to get Hyperledger Fabric running. Get the Hyperledger Fabric binaries manually by script because there is no one-click installer.
+1. Install a lot of prerequisites components just to get Hyperledger Fabric running. Get the Hyperledger Fabric binaries images into the docker manually by script because there is no one-click installer.
 1. Pick either as a developer (one that build the application and/or chaincode specifically) or as a network operator (one that implement the developer's chaincode to run in the network).
    1. \[Developer-only\] Learn Node.js/Java for front-end application communication and Go for back-end code that deals with the blockchain (chaincode)
 1. Have a CA (Certificate Authority) or use the one provided (`Hyperledger Fabric CA`).
@@ -21,7 +25,7 @@ Hyperledger Fabric overall:-
 
 Hyperledger Fabric idea for developers:-
 
-- Learn to code for SDK (front-end) or chaincode/smart contract (Go-only for now, back-end). Test in dummy Docker mode.
+- Learn to code for SDK (front-end) or chaincode/smart contract (Go-only for now, back-end). Test in Docker mode.
 
 Hyperledger Fabric for network operator (aka system admins or deploying it live):-
 
@@ -32,13 +36,13 @@ Tutorial notes:-
 - dev: https://hyperledger-fabric.readthedocs.io/en/latest/write_first_app.html (app) and https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4ade.html (chaincode dev)
 - NO or deploy: https://hyperledger-fabric.readthedocs.io/en/latest/build_network.html (network) and https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4noah.html (chaincode implement)
 
-# Preparation for Hyperledger Fabric
+## Preparation for Hyperledger Fabric
 
-Tested for uBuntu 16.04, accurate as of 17/10/2017. All explanation assumed the reader is in the uBuntu (Linux) environment. Improvise accordingly to the official documentation if different.
+Tested for uBuntu 16.04, accurate as of 18/10/2017. All explanation assumed the reader is in the uBuntu (Linux) environment. Improvise accordingly to the official documentation if using different architecture like Arch.
 
 Windows OS have some specific modifications to be done. A bit less for macOS. Easiest on Linux OS.
 
-Note: Very large (about 3-4 GB or so space will be needed just for the preparation, another 3-4GB for the Hyperledger Fabric binary itself) size and may take up to a day depending on connection speed (about 20 hours for my side due to horrible library connection speed).
+It is recommended to try to dedicate and complete this in one day on an undisturbed, quotaless connection line.
 
 ## Installation
 
@@ -46,7 +50,29 @@ Note: Very large (about 3-4 GB or so space will be needed just for the preparati
 
 Reference: https://hyperledger-fabric.readthedocs.io/en/latest/prereqs.html
 
-Whenever possible, refer to the docs rather than copying the codes here. Also, refer to the official website documentation to on how to download and configure it properly. Use these with a grain of salt.
+Whenever possible, refer to the docs rather than copying the codes here. Also, refer to the official website documentation on how to download and configure it properly. Use these with a grain of salt.
+
+#### Test code (Linux only)
+
+Do this on the terminal (`Ctrl` + `Alt` + `T`) once all the prerequisites are installed. If any of the commands is not working, check again the official installation guide.
+
+```bash
+git --version
+curl --version
+docker version
+docker-compose version
+go version
+nodejs --version
+python --version
+npm --version
+docker images
+```
+
+What it does is to check the versions in this order: git-scm, curl, docker, docker-compose, go, nodejs, python, npm, and lastly the images of Hyperledger Fabric binaries (if you went ahead and downloaded it; should be empty otherwise) in the local Docker repository.
+
+Please ensure that the version for NodeJS (6.9 - not 7.x) and Go (1.9) are fulfilled correctly to the official criteria to ensure no unexpected errors stemming from unsupported tools installation issues.
+
+There are `nvm` and `gvm` (for version manager for NodeJS and Go respectively) that may be of interest if all else fails. 
 
 #### Update everything first.
 
@@ -63,7 +89,7 @@ sudo apt-get install git
 git --version
 ```
 
-git one-time configuration (replace `{name}` and `{email}` with your own details)
+git one-time configuration (replace `{name}` and `{email}` with a GitHub's account details)
 
 ```bash
 git config --global user.name "{name}"
@@ -76,7 +102,11 @@ git config --global user.email "{email}"
 sudo apt-get install     apt-transport-https     ca-certificates     curl     software-properties-common
 ```
 
-#### Docker (repository style, Intel)
+#### Docker CE (repository style, Intel)
+
+Reference (Docker Community Edition): https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce
+
+Any variation of Docker is fine. Only Docker CE is free.
 
 ```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -93,19 +123,30 @@ sudo docker info
 
 ```bash
 sudo apt install docker-compose
+docker-compose version
 ```
 
 #### Go
 
 Installation note: https://golang.org/doc/install
 
-Download binary first, then:-
+Download binary file first, then move to the same directory of the binary file:-
 
 ```bash
 tar -C /usr/local -xzf {archive}
-export GOPATH=/usr/local/go/bin
-export PATH=$PATH:$GOPATH/bin
 ```
+
+Then, do this:-
+
+```bash
+sudo nano /etc/environment
+```
+
+Append `:/usr/local/go/bin` at the end of the line \[use the `rightArrowKey` (`->`)\] before the `"`.
+
+Logout and login again.
+
+Test with `go version`
 
 #### Node.js (manual)
 
@@ -149,22 +190,25 @@ Can be safely ignored if not using.
 
 ```bash
 git clone https://github.com/hyperledger/fabric-samples.git
-cd fabric-samples
 ```
 
 #### Hyperledger Fabric binary (Important)
 
-Make a development folder. Enter this development folder. Do below.
+There is no real one-click installer for Hyperledger Fabric yet.
 
-There is no real one-click installer for Hyperledger Fabric yet. Anytime before running the Docker, you should do this.
-
-It must be done manually but there is a scipt below that can just collect everything needed and place it in the `bin` folder and modify the Docker directly (please make sure the current account is in `docker` group to prevent errors because no `sudo` rights)
+It must be done manually but there is a scipt below that can just collect everything needed and place it into a `bin` folder (will be created if not found) and modify the Docker directly to add in the Hyperledger Fabric binary images files (please make sure the current account is in `docker` group to prevent errors because no `sudo` rights)
 
 ```bash
 curl -sSL https://goo.gl/Q3YRTi | bash
 ```
 
-Note: Very heavy. Please dedicate at least 3GB - 4GB of quota of connection before using.
+Note: You may want to run it twice or more to ensure everything is downloaded accordingly. Unlike the prerequisites, these files are huge so consider running the command on an unlimited connection.
+
+You can see the binaries and update shell scripts for the docker images of Hyperledger Fabrics in the `bin` folder and the images saved in local Docker repository with:-
+
+```bash
+docker images -a
+```
 
 #### Hyperledger Fabric Software Development Kits (SDK)
 
@@ -182,7 +226,9 @@ Only do this when there is `package.json` and `.js` files to run.
 npm install
 ```
 
-You will have a `node_modules` folder. Whenever possible, always delete this before running `npm install` for the sake of sanity.
+You will have a `node_modules` folder. Whenever possible, always delete this before running `npm install` for the sake of sanity. 
+
+`WARN` notice can _usually_ be ignored safely unless it was developed manually in which it is the responsibility of the developer to try to fix it. 
 
 ##### using Java
 
