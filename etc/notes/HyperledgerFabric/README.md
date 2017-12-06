@@ -2,22 +2,23 @@
 
 ## tl;dr
 
-[Do check out the CHEATCODE.md for cool stuffs to keep notes about after everything is done](./CHEATCODE.md)
+[Do check out the CHEATCODE.md for cool stuffs to keep notes about after everything is done](../CHEATCODE.md)
 
 - Introduction: https://hyperledger-fabric.readthedocs.io/en/latest/blockchain.html
 - Model glossary and benefits: https://hyperledger-fabric.readthedocs.io/en/latest/fabric_model.html
 
 - Difficulty: Sounds easy in theory; for implementation, an architect's precision level of design (as in, down to all the tools and resources to use for one component) with zero room for errors is expected. It basically assumed you know _something_ about how the whole thing works along with the tools used and there is no comprehensive debugging help so yes, some implementation-specific reading ~~may be~~ required.
-- Size required: Have a dedicated server machine for this. It took up about ~10GB or more if I am not mistaken. Did not bothered to do a precise count including all the prerequisites and the binaries to run the Hyperledger Fabric.
+- Size required: Have a dedicated server machine for this. It took up about ~10GB or more if not mistaken. Did not bothered to do a precise count including all the prerequisites and the binaries to run the Hyperledger Fabric.
 
 Simplified walkthrough:-
 
 1. Install a lot of prerequisites components just to get Hyperledger Fabric running. Get the Hyperledger Fabric binaries images into the docker manually by script because there is no one-click installer.
-1. Pick either as a developer (one that build the application and/or chaincode specifically) or as a network operator (one that implement the developer's chaincode to run in the network).
-   1. \[Developer-only\] Learn Node.js/Java for front-end application communication and Go for back-end code that deals with the blockchain (chaincode)
+1. Pick either as a developer (dev; one that build the application and/or chaincode specifically) or as a network operator (NO; one that implement the developer's chaincode to run in the network).
+   1. \[dev\] Learn Node.js/Java for front-end application communication and Go for back-end code that deals with the blockchain (chaincode)
+   1. \[NO\] Prepare a startup bash/shell script to deploy the chaincode to run.
 1. Have a CA (Certificate Authority) or use the one provided (`Hyperledger Fabric CA`).
 1. Check the project document.
-1. Learn how to code JavaScript/Java/Go for dummies and the Hyperledger Fabric's codes
+1. Learn how to code JavaScript/Java/Go for dummies and the Hyperledger Fabric's codes.
 
 Hyperledger Fabric overall:-
 
@@ -34,13 +35,13 @@ Hyperledger Fabric for network operator (aka system admins or deploying it live)
 Tutorial notes:-
 
 - dev: https://hyperledger-fabric.readthedocs.io/en/latest/write_first_app.html (app) and https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4ade.html (chaincode dev)
-- NO or deploy: https://hyperledger-fabric.readthedocs.io/en/latest/build_network.html (network) and https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4noah.html (chaincode implement)
+- NO or deployment: https://hyperledger-fabric.readthedocs.io/en/latest/build_network.html (network) and https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4noah.html (chaincode implement)
 
 ## Preparation for Hyperledger Fabric
 
-Tested for uBuntu 16.04, accurate as of 18/10/2017. All explanation assumed the reader is in the uBuntu (Linux) environment. Improvise accordingly to the official documentation if using different architecture like Arch.
+Tested for uBuntu 16.04, accurate as of 18/10/2017. All explanation assumed the reader is in the uBuntu (Linux) environment. Improvise accordingly to the official installation documentation if using different architecture like Arch.
 
-Windows OS have some specific modifications to be done. A bit less for macOS. Easiest on Linux OS.
+Windows OS have some specific modifications to be done. A bit less for macOS. Easiest on Linux OS. As usual, please refer to the official installation documentation for more information.
 
 It is recommended to try to dedicate and complete this in one day on an undisturbed, quotaless connection line.
 
@@ -180,7 +181,7 @@ npm --version
 
 ### Hyperledger Fabric
 
-This is the part where the documentation becomes confusing. Take these with extreme caution. In fact, you may not even _know_ you are doing it right or not since everything is everywhere and assumed _you know_.
+This is the part where the documentation becomes confusing. Take these with extreme caution. In fact, it may be difficult to even _know_ it is done right since everything is everywhere and with assumed understanding that the user knows how to find and solve manually.
 
 The binary and the SDK must be in the development folder environment.
 
@@ -202,9 +203,9 @@ It must be done manually but there is a scipt below that can just collect everyt
 curl -sSL https://goo.gl/Q3YRTi | bash
 ```
 
-Note: You may want to run it twice or more to ensure everything is downloaded accordingly. Unlike the prerequisites, these files are huge so consider running the command on an unlimited connection.
+Note: It is suggested to run it at least twice in case of bad connection breaking one part of the download. Unlike the prerequisites, these files are huge so consider running the command on an unlimited connection.
 
-You can see the binaries and update shell scripts for the docker images of Hyperledger Fabrics in the `bin` folder and the images saved in local Docker repository with:-
+Binaries and update shell scripts for the docker images of Hyperledger Fabrics are located in the `bin` folder and the images saved in local Docker repository with:-
 
 ```bash
 docker images -a
@@ -236,7 +237,7 @@ You will have a `node_modules` folder. Whenever possible, always delete this bef
 
 ##### No JavaScript and Java, please.
 
-Too bad. The Python SDK is still in developement by time of writing. Deal with it for now.
+Too bad. The Python SDK is still in developement by time of writing (06/12/2017). Deal with it for now.
 
 ### Et Cetera
 
