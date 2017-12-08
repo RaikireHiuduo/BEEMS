@@ -1,0 +1,25 @@
+{
+  "name": "hello_world_nodejs",
+  "version": "1.0.0",
+  "description": "An Hello World program in NodeJS",
+  "main": "hello.js",
+  "scripts": {
+    "test": "node hello.js"
+  },
+  "keywords": [
+    "demo",
+    "nodejs",
+    "hello",
+    "world"
+  ],
+  "author": "RaikireHiuduo",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaikireHiuduo/BEEMS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RaikireHiuduo/BEEMS/issues"
+  },
+  "homepage": "https://github.com/RaikireHiuduo/BEEMS#readme"
+}
