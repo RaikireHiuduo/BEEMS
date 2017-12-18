@@ -44,7 +44,7 @@ Notes:-
   - It is depending on the size of the updates.
 - It is suggested to run it daily to update the Hyperledger Fabric to the latest version.
   - It is also suggested to run it at least twice in case of bad connection breaking one part of the download. If there is no problem, it should be a quick check without any noticable downloading actions and done.
-  
+
 ## Development
 
 ### Node.js
@@ -57,6 +57,6 @@ Only do this when there is `package.json` and `.js` files to run.
 npm install
 ```
 
-You will have a `node_modules` folder. Whenever possible, always delete this before running `npm install` for the sake of sanity. 
+You will have a `node_modules` folder. Whenever possible, always delete this before running `npm install` for the sake of sanity.
 
-`WARN` notice can _usually_ be ignored safely unless it was developed manually in which it is the responsibility of the developer to try to fix it. 
+`WARN` notice can _usually_ be ignored safely unless it was developed manually in which it is the responsibility of the developer to try to fix it.
