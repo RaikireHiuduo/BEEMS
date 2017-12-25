@@ -1,0 +1,76 @@
+----
+Note: Based on Checkpoint 2 proposal.
+
+cd \xampp\mysql\bin
+mysql -u root -p
+root123
+
+USE beems;
+
+SELECT * FROM users;
+SELECT * FROM groups;
+SELECT * FROM assets;
+SELECT * FROM transactions;
+DESC users;
+DESC groups;
+DESC assets;
+DESC transactions;
+
+---> MAGIC.
+
+CREATE DATABASE beems;
+USE beems;
+
+DROP TABLE users;
+DROP TABLE assets;
+DROP TABLE transactions;
+DROP TABLE groups;
+
+CREATE TABLE groups(
+	id INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	name VARCHAR(100) NOT NULL,
+) AUTO_INCREMENT = 1 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE users(
+	id INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	name VARCHAR(100) NOT NULL,
+	passwordhash VARCHAR(50) NOT NULL,
+	role INT(1) NOT NULL,
+	gid INT(5) NOT NULL,
+	
+	FOREIGN KEY (gid) REFERENCES groups(id)
+) AUTO_INCREMENT = 1 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE assets(
+	id INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	itemtype VARCHAR(50) NOT NULL,
+	qrcode VARCHAR(100) NOT NULL,
+	title VARCHAR(100) NOT NULL,
+	content VARCHAR(5000) NOT NULL,
+	gid INT(5) NOT NULL,
+	
+	FOREIGN KEY (gid) REFERENCES groups(id)
+) AUTO_INCREMENT = 1 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE transactions(
+	id INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	uid INT(5) NOT NULL, 
+	aid INT(5) NOT NULL,
+	date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	longtitude VARCHAR(15),
+	latitude VARCHAR(15),
+	
+	FOREIGN KEY (uid) REFERENCES users(id),
+	FOREIGN KEY (aid) REFERENCES assets(id)
+) AUTO_INCREMENT = 1 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO groups (name) VALUES ("#bitTeam");
+
+
+
+DROP TABLE users;
+DROP TABLE assets;
+DROP TABLE transactions;
+DROP TABLE groups;
+
+----
