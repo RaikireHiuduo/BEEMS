@@ -1,0 +1,22 @@
+{
+  "name": "beems",
+  "version": "0.0.1",
+  "description": "Blockchain-based Enterprise Entity Management System. Using blockchain technologies in asset management context. Project with MIMOS.",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": "RaikireHiuduo",
+  "email": "chun_heng@hotmail.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "latest",
+    "composer-client": "latest",
+    "composer-common": "latest",
+    "composer-connector-embedded": "latest",
+    "chai": "latest",
+    "eslint": "latest",
+    "istanbul": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
+}
