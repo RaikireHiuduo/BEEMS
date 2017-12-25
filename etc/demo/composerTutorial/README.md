@@ -37,6 +37,8 @@ Class defination. Model everything what the Composer need to know about.
 
 [Reference for writing .cto modeling language](https://hyperledger.github.io/composer/reference/cto_language.html).
 
+[Another reference regarding `o` (owned characteristic) and `-->` (has-a relationship) in .cto modeling language](https://stackoverflow.com/a/44410656)
+
 ## Part 3: Define how everything works
 
 The logic and communication between the objects defined by the `.cto`.

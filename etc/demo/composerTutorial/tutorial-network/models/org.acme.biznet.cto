@@ -1,9 +1,10 @@
 /**
  * My commodity trading network
- * Study: https://hyperledger.github.io/composer/reference/cto_language.html
+ * Study: https://hyperledger.github.io/composer/reference/cto_language.html and https://stackoverflow.com/a/44410656
  */
 
 namespace org.acme.biznet
+
 asset Commodity identified by tradingSymbol {
     o String tradingSymbol
     o String description
