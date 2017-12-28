@@ -1,19 +1,30 @@
 /**
- * Write your model definitions here
+ * Blockchain modeling for BEEMS.
+ * Only the digital signature information is decentralised.
+ * CR-- only.
+ * 
+ * Everything else will be relied on the other developed application.
  */
 
 namespace org.bit.beems
 
-participant User identified by email {
-  o String email
+participant User identified by id {
+  o String id
+  o String name
 }
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  o String value
+asset DigitalSignature identified by transactionID {
+  o String transactionID
+  o String encryptedSignatureHash
+  o String publicKey
 }
 
-transaction ChangeAssetValue {
-  o String newValue
-  --> Asset relatedAsset
+transaction addDigitalSignature {
+  o String newTransactionID
+  o String newEncryptedSignatureHash
+  o String newPublicKey
+}
+
+transaction getDigitalSignature {
+  --> DigitalSignature digitalSignatureFromBlockchain
 }
