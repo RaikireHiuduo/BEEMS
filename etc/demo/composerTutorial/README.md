@@ -15,9 +15,9 @@
 
 # Demostration of running a Composer application
 
-Basically, a _Hello World_ equivalent.
+Basically, a _Hello World_ equivalent. 
 
-Reference: [Developer Tutorial for creating a Hyperledger Composer solution](https://hyperledger.github.io/composer/tutorials/developer-tutorial.html "Developer Tutorial for creating a Hyperledger Composer solution")
+Reference: [Developer Tutorial for creating a Hyperledger Composer solution](https://hyperledger.github.io/composer/tutorials/developer-tutorial.html "Developer Tutorial for creating a Hyperledger Composer solution") and [Queries Tutorial using the Composer Query language and REST APIs](https://hyperledger.github.io/composer/tutorials/queries.html "Queries Tutorial using the Composer Query language and REST APIs")
 
 ## Part 0: Installation
 
