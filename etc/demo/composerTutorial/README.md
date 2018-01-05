@@ -15,21 +15,23 @@
 
 # Demostration of running a Composer application
 
-Basically, a _Hello World_ equivalent.
+Basically, section one is a _Hello World_ equivalent and section 2 is an example of a workable transaction solution by a familiar database-like query syntax. 
 
-Reference: [Developer Tutorial for creating a Hyperledger Composer solution](https://hyperledger.github.io/composer/tutorials/developer-tutorial.html "Developer Tutorial for creating a Hyperledger Composer solution")
+Reference: [Developer Tutorial for creating a Hyperledger Composer solution](https://hyperledger.github.io/composer/tutorials/developer-tutorial.html "Developer Tutorial for creating a Hyperledger Composer solution") and [Queries Tutorial using the Composer Query language and REST APIs](https://hyperledger.github.io/composer/tutorials/queries.html "Queries Tutorial using the Composer Query language and REST APIs")
 
-## Part 0: Installation
+## Section 1: Hello world!
+
+### Part 0: Installation
 
 See [Hyperledger Composer README file][HC].
 
-## Part 1: Generate a Composer skeleton
+### Part 1: Generate a Composer skeleton
 
 ![][img1]
 
 Ran on terminal on the development folder path with: `yo hyperledger-composer:businessnetwork`.
 
-## Part 2: Writing the actors and definations
+### Part 2: Writing the actors and definations
 
 Class defination. Model everything what the Composer need to know about.
 
@@ -39,7 +41,7 @@ Class defination. Model everything what the Composer need to know about.
 
 [Another reference regarding `o` (owned characteristic) and `-->` (has-a relationship) in .cto modeling language](https://stackoverflow.com/a/44410656)
 
-## Part 3: Define how everything works
+### Part 3: Define how everything works
 
 The logic and communication between the objects defined by the `.cto`.
 
@@ -47,13 +49,13 @@ The logic and communication between the objects defined by the `.cto`.
 
 Do note that this is usually strictly to program-side of thinking. To make the program react based on user input, see the query (`.qry`) file instead (not covered here for obvious reason of unnecessary complexity to demostrate application deployability).
 
-## Part 4: Who can do this?
+### Part 4: Who can do this?
 
 Access control list on who on what network can do what. Usefulness varies.
 
 [See the tutorial-network/permissions.acl file](./tutorial-network/permissions.acl).
 
-## Part 5: Compile
+### Part 5: Compile
 
 Compile it to Composer-readable `.bna` (archive) file.
 
@@ -61,7 +63,7 @@ Compile it to Composer-readable `.bna` (archive) file.
 
 Ran on terminal on the development folder path with: `composer archive create -t dir -n .`.
 
-## Part 6: Deployment
+### Part 6: Deployment
 
 Deployment to the network. Some effort required.
 
@@ -95,3 +97,36 @@ Optional:-
 ![][img8]
 
 ![][img9]
+
+## Section 2: Adding database-like query transaction
+
+### Part 7: Add event to .cto
+
+`event` is used by `queries.qry` later.
+
+### Part 8: Updated lib/logic.js to use event
+
+Updated the logic to apply and use the `event` defined.
+
+### Part 9: Add queries.qry
+
+`queries.qry` contains high-level abstraction query functions for programmers. This allows usage without knowing how everything works on the Composer side, assuming the query does exactly what it was written for.
+
+[See the tutorial-network/queries.qry file](./tutorial-network/queries.qry).
+
+### Part 10: (Re)Creation and (Re)Deployment
+
+Recreate the application and redeploy to the fabric network.
+
+1. (Re)Create the appliction: `composer archive create --sourceType dir --sourceName . -a tutorial-network@0.0.1.bna`
+1. Update the network application (if still in network): `composer network update -a tutorial-network@0.0.1.bna -c admin@tutorial-network`
+   1. If the application is not in the network, then just deploy.
+1. Test the application response in the network: `composer network ping -c admin@tutorial-network`
+
+### Part 11: Testing on REST server in localhost:3000
+
+Test the queries with the REST server in `localhost:3000`.
+
+Refer to the docs for more information.
+
+Do note that since this is a test, information will be lost when the fabric network goes offline.
