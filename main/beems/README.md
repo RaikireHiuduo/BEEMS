@@ -6,4 +6,4 @@ Blockchain-based Enterprise Entity Management System. Using blockchain technolog
 
 ## Usage
 
-The blockchain is inteded to be used only as a storage point for digital signatures used for comparison between the MySQL database of the enterprise system.
+The blockchain is intended to be used only as a storage point for digital signatures used for comparison between the MySQL database of the enterprise system by a REST API server.
