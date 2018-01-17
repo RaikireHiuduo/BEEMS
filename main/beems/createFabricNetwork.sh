@@ -18,15 +18,8 @@ archive="beems@0.0.1.bna"
 adminNetworkCard="networkadmin.card"
 devFolder="beems"
 
-# remove old networdadmin.card
-composer card list
-composer card delete -n ${adminNetwork}
-composer card delete -n ${peerAdmin}
-
-# destroy old network
-cd ../fabric-tools
-./stopFabric.sh
-./teardownFabric.sh
+# uninstall whatever previous version of this fabric and its cards available.
+./uninstall.sh
 
 # start network
 cd ../fabric-tools

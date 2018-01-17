@@ -17,6 +17,7 @@ chmod u+x startApp.sh
 chmod u+x stopApp.sh
 chmod u+x createApp.sh
 chmod u+x updateApp.sh
+chmod u+x uninstall.sh
 
 # Destroy and create the fabric-network from scratch and install the app specifically for one fabric-network.
 ./createFabricNetwork.sh
@@ -33,6 +34,9 @@ chmod u+x updateApp.sh
 
 # Update the app in the fabric-network
 ./updateApp.sh
+
+# Uninstall the app and the fabric-network
+./uninstall.sh
 ```
 
 ### ELI5
@@ -44,8 +48,9 @@ chmod u+x startApp.sh
 chmod u+x stopApp.sh
 chmod u+x createApp.sh
 chmod u+x updateApp.sh
+chmod u+x uninstall.sh
 
-# For first time or when all else fails (all information will be lost).
+# For first time or when all else fails (all information will be lost; Hard install).
 ./createFabricNetwork.sh
 
 # Next time onwards.
@@ -56,6 +61,9 @@ chmod u+x updateApp.sh
 
 # Application updated? (for developers only)
 ./updateApp.sh
+
+# Uninstall
+./uninstall.sh
 ```
 
 ## Available commands/queries
