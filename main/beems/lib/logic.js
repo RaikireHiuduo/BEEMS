@@ -5,7 +5,7 @@
  * BROKEN. DO NOT USE FOR NOW. NO IDEA WHY IT IS NOT INSIDE THE ASSET REGISTRY.
  * @param {org.bit.beems.addDigitalSignature} digitalSignature - the digital signature to be processed
  * @transaction
- */
+
 
 function addDigitalSignature (digitalSignature) {
     var blockchainLocation = "org.bit.beems";
@@ -34,3 +34,4 @@ function addDigitalSignature (digitalSignature) {
             // Add optional error handling here.
         });
 }
+*/
