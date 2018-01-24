@@ -1,10 +1,17 @@
-/* Named Queries.
+/* Named Queries. Only capable of returning blob of information.
  * Basic: https://hyperledger.github.io/composer/reference/query-language.html
  * Detailed: https://hyperledger.github.io/composer/business-network/query.html
  */
 
-/*
-1. queryAddDigitalSignature
-2. queryGetDigitalSignature
-3. queryListDigitalSignature
-*/
+query selectDigitalSignature {
+  description: "Select all the digital signatures in the blockchain"
+  statement:
+    SELECT org.bit.beems.DigitalSignature
+}
+
+query selectDigitalSignatureByID {
+  description: "Select a digital signature by ID in the blockchain"
+  statement:
+    SELECT org.bit.beems.DigitalSignature
+      WHERE (id == _$id)
+}

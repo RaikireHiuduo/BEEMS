@@ -12,15 +12,15 @@ Everything here assume you are doing it in `terminal`.
 
 ```bash
 # chmod
-chmod u+x createFabricNetwork.sh
+chmod u+x install.sh
 chmod u+x startApp.sh
 chmod u+x stopApp.sh
 chmod u+x createApp.sh
 chmod u+x updateApp.sh
 chmod u+x uninstall.sh
 
-# Destroy and create the fabric-network from scratch and install the app specifically for one fabric-network.
-./createFabricNetwork.sh
+# Install (dependent on createApp.sh). REST API server will be deployed if successful.
+./install.sh
 
 # Start the app/fabric-network with REST API. One channel, one peer.
 ./startApp.sh
@@ -32,7 +32,7 @@ chmod u+x uninstall.sh
 # Create the app
 ./createApp.sh
 
-# Update the app in the fabric-network
+# Update the app in the fabric-network when it is up
 ./updateApp.sh
 
 # Uninstall the app and the fabric-network
@@ -43,7 +43,7 @@ chmod u+x uninstall.sh
 
 ```bash
 # chmod
-chmod u+x createFabricNetwork.sh
+chmod u+x install.sh
 chmod u+x startApp.sh
 chmod u+x stopApp.sh
 chmod u+x createApp.sh
@@ -51,21 +51,26 @@ chmod u+x updateApp.sh
 chmod u+x uninstall.sh
 
 # For first time or when all else fails (all information will be lost; Hard install).
-./createFabricNetwork.sh
+./install.sh
 
 # Next time onwards.
 ./startApp.sh
 
-# Stop
+# Stop service
 ./stopApp.sh
 
-# Application updated? (for developers only)
-./updateApp.sh
-
-# Uninstall
+# Uninstall (Hard purge)
 ./uninstall.sh
 ```
 
 ## Available commands/queries
 
-(to be added...)
+Only `CR--` supported. Please use the REST API located at `localhost:3000`.
+
+- Create
+  - Direct `POST` to `DigitalSignature` asset registry.
+  - WIP code: `addDigitalSignature` (Broken by time of writing)
+- Read
+  - Query
+    - `selectDigitalSignature`: Returns all.
+    - `selectDigitalSignatureByID`: Returns one.

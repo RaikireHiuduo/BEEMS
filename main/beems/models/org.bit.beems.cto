@@ -13,18 +13,18 @@ participant User identified by id {
   o String name
 }
 
-asset DigitalSignature identified by transactionID {
-  o String transactionID
+asset DigitalSignature identified by id {
+  o String id
   o String encryptedSignatureHash
   o String publicKey
 }
 
 transaction addDigitalSignature {
-  o String newTransactionID
-  o String newEncryptedSignatureHash
-  o String newPublicKey
+  o String id
+  o String encryptedSignatureHash
+  o String publicKey
 }
 
-transaction getDigitalSignature {
-  --> DigitalSignature digitalSignatureFromBlockchain
+event AddDigitalSignatureNotification {
+  --> DigitalSignature digitalSignature
 }

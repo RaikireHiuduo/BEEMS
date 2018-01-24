@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# Recreate the fabric network from scratch completely. This assumes the .bna file is available.
-# Try running createApp.sh if failing or check this shell code.
+# Recreate the fabric network from scratch completely.
+# Change the FABRIC_START_TIMEOUT to a large value if failing like 60 seconds
 # Single channel, single peer.
 
 # set the environment
 export FABRIC_VERSION=hlfv1;
-export FABRIC_START_TIMEOUT=15;
+export FABRIC_START_TIMEOUT=30;
 
 # constants
 adminNetwork="admin@beems"
