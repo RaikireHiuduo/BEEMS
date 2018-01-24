@@ -1,0 +1,30 @@
+/**
+ * Blockchain modeling for BEEMS.
+ * Only the digital signature information is decentralised.
+ * CR-- only.
+ * 
+ * Everything else will be relied on the other developed application.
+ */
+
+namespace org.bit.beems
+
+participant User identified by id {
+  o String id
+  o String name
+}
+
+asset DigitalSignature identified by id {
+  o String id
+  o String encryptedSignatureHash
+  o String publicKey
+}
+
+transaction addDigitalSignature {
+  o String id
+  o String encryptedSignatureHash
+  o String publicKey
+}
+
+event AddDigitalSignatureNotification {
+  --> DigitalSignature digitalSignature
+}
