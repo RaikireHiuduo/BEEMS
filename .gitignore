@@ -1,3 +1,16 @@
 /main/beems/networkadmin.card
 /main/beems/composer-logs
 /main/beems/beems@0.0.1.bna
+/main/release/composer-logs
+/main/release/beems@0.0.1.bna
+/main/release/fabric/chaincode
+/main/release/fabric/networkSetup/channel-artifacts
+/main/release/fabric/networkSetup/*.card
+/main/release/fabric/networkSetup/1/*.card
+/main/release/fabric/networkSetup/1/bit
+/main/release/fabric/networkSetup/2/*.card
+/main/release/fabric/networkSetup/2/mimos
+/main/release/fabric/networkSetup/composer-logs
+/main/release/fabric/networkSetup/crypto-config
+/main/release/fabric/networkSetup/docker-compose-cas.yaml
+/main/release/fabric/networkSetup/docker-compose-e2e.yaml

@@ -1,4 +1,7 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
 # SPDX-License-Identifier: Apache-2.0
+#
 
 ---
 ################################################################################
@@ -19,15 +22,15 @@ Profiles:
         Consortiums:
             BEEMSConsortium:
                 Organizations:
-                    - *bit
-                    - *mimos
-    BEEMSOrgsChannel:
+                    - *Org1
+                    - *Org2
+    BEEMSChannel:
         Consortium: BEEMSConsortium
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *bit
-                - *mimos
+                - *Org1
+                - *Org2
 
 ################################################################################
 #
@@ -52,23 +55,23 @@ Organizations:
         # MSPDir is the filesystem path which contains the MSP configuration
         MSPDir: crypto-config/ordererOrganizations/beems.com/msp
 
-    - &bit
-        Name: bitMSP
-        ID: bitMSP
-        MSPDir: crypto-config/peerOrganizations/bit.beems.com/msp
+    - &Org1
+        Name: Org1MSP
+        ID: Org1MSP
+        MSPDir: crypto-config/peerOrganizations/org1.beems.com/msp
         AnchorPeers:
             # AnchorPeers defines the location of peers which can be used
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
-            - Host: peer0.bit.beems.com
+            - Host: peer0.org1.beems.com
               Port: 7051
 
-    - &mimos
-        Name: mimosMSP
-        ID: mimosMSP
-        MSPDir: crypto-config/peerOrganizations/mimos.beems.com/msp
+    - &Org2
+        Name: Org2MSP
+        ID: Org2MSP
+        MSPDir: crypto-config/peerOrganizations/org2.beems.com/msp
         AnchorPeers:
-            - Host: peer0.mimos.beems.com
+            - Host: peer0.org2.beems.com
               Port: 7051
 
 ################################################################################
