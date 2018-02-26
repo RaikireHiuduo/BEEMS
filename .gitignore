@@ -14,3 +14,4 @@
 /main/release/fabric/networkSetup/crypto-config
 /main/release/fabric/networkSetup/docker-compose-cas.yaml
 /main/release/fabric/networkSetup/docker-compose-e2e.yaml
+/main/nodetest/node_modules
